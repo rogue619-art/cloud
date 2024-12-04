@@ -4,6 +4,9 @@ import java.net.Socket;
 
 public class SSLServer {
     public static void main(String[] args) {
+        System.setProperty("javax.net.ssl.keyStore", "keystore.jks");
+        System.setProperty("javax.net.ssl.keyStorePassword", "password");
+
         try (SSLServerSocket serverSocket = (SSLServerSocket) SSLServerSocketFactory.getDefault().createServerSocket(8443)) {
             System.out.println("SSL server listening on port 8443...");
             try (SSLSocket clientSocket = (SSLSocket) serverSocket.accept();
